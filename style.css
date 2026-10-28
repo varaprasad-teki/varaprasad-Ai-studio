@@ -234,6 +234,38 @@ text-align:center;
 background:#020617;
 }
 
+@media (min-width:769px) {
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static;
+    width: auto;
+    flex-direction: row;
+    gap: 25px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .nav-links li {
+    width: auto;
+  }
+
+  .nav-links a {
+    display: inline-block;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    color: white;
+  }
+}
+
 @media(max-width:768px){
   nav{
     padding:16px 20px;
