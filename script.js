@@ -1,39 +1,9 @@
-// Mobile Menu
-
-const menuBtn =
-document.querySelector(".menu-btn");
-
-const navLinks =
-document.querySelector(".nav-links");
-
-menuBtn.addEventListener("click",()=>{
-
-navLinks.classList.toggle("active");
-
-});
-
-// Custom Cursor
-
-const cursor =
-document.querySelector(".cursor");
-
-document.addEventListener("mousemove",(e)=>{
-
-cursor.style.left = e.clientX + "px";
-cursor.style.top = e.clientY + "px";
-
-});
-
-// Scroll Reveal
-
-const cards =
-document.querySelectorAll(
-".card,.glass-card,.skill"
+const sections = document.querySelectorAll(
+".card,.project-card,.contact-box"
 );
 
-const observer =
-new IntersectionObserver((entries)=>{
-
+const observer = new IntersectionObserver(
+(entries)=>{
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
@@ -47,32 +17,28 @@ entry.target.style.transform="translateY(0)";
 
 });
 
-cards.forEach(card=>{
+sections.forEach(item=>{
 
-card.style.opacity="0";
-card.style.transform="translateY(60px)";
-card.style.transition="all .8s ease";
+item.style.opacity="0";
+item.style.transform="translateY(80px)";
+item.style.transition="all 1s ease";
 
-observer.observe(card);
+observer.observe(item);
 
 });
 
-// Navbar Effect
-
 window.addEventListener("scroll",()=>{
 
-const nav =
-document.querySelector("nav");
+const nav=document.querySelector("nav");
 
-if(window.scrollY > 50){
+if(window.scrollY>50){
 
-nav.style.background =
-"rgba(0,0,0,.4)";
+nav.style.background="rgba(0,0,0,.4)";
 
 }else{
 
-nav.style.background =
-"rgba(255,255,255,.05)";
+nav.style.background="rgba(255,255,255,.03)";
+
 }
 
 });
