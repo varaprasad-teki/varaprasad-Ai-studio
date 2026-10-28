@@ -11,7 +11,7 @@ const revealCards = new IntersectionObserver(
   },
   {
     threshold: 0.15,
-    rootMargin: '0px 0px -30px 0px'
+    rootMargin: '0px 0px -20px 0px'
   }
 );
 
@@ -26,12 +26,12 @@ window.addEventListener('scroll', () => {
   if (!nav) return;
 
   if (window.scrollY > 50) {
-    nav.style.background = 'rgba(0, 0, 0, 0.55)';
-    nav.style.backdropFilter = 'blur(8px)';
-    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+    nav.style.background = 'rgba(8, 12, 24, 0.7)';
+    nav.style.borderBottom = '1px solid rgba(125, 211, 252, 0.22)';
+    nav.style.boxShadow = '0 0 20px rgba(125, 211, 252, 0.12)';
   } else {
     nav.style.background = 'rgba(255, 255, 255, 0.03)';
-    nav.style.backdropFilter = 'blur(0px)';
+    nav.style.borderBottom = '1px solid rgba(125, 211, 252, 0.15)';
     nav.style.boxShadow = 'none';
   }
 });
