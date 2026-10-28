@@ -17,12 +17,22 @@ const revealCards = new IntersectionObserver(
 
 cards.forEach((card) => {
   card.classList.add('reveal');
-  revealCards.observe(card);
+  if (typeof IntersectionObserver !== 'undefined') {
+    revealCards.observe(card);
+  } else {
+    card.classList.add('visible');
+  }
 });
 
 const nav = document.querySelector('nav');
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('primaryNav');
+
+const closeMenu = () => {
+  if (!navLinks || !menuToggle) return;
+  navLinks.classList.remove('active');
+  menuToggle.setAttribute('aria-expanded', 'false');
+};
 
 window.addEventListener('scroll', () => {
   if (!nav) return;
@@ -40,21 +50,20 @@ window.addEventListener('scroll', () => {
 
 if (menuToggle && navLinks) {
   menuToggle.addEventListener('click', () => {
+    if (window.innerWidth > 768) return;
     const isOpen = navLinks.classList.toggle('active');
     menuToggle.setAttribute('aria-expanded', String(isOpen));
   });
 
   navLinks.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      closeMenu();
     });
   });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
-      navLinks.classList.remove('active');
-      menuToggle.setAttribute('aria-expanded', 'false');
+      closeMenu();
     }
   });
 }
