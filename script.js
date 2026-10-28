@@ -1,9 +1,7 @@
-const sections = document.querySelectorAll(
-".card,.project-card,.contact-box"
-);
+const cards=document.querySelectorAll(".card,.glass");
 
-const observer = new IntersectionObserver(
-(entries)=>{
+const observer=new IntersectionObserver((entries)=>{
+
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
@@ -17,13 +15,13 @@ entry.target.style.transform="translateY(0)";
 
 });
 
-sections.forEach(item=>{
+cards.forEach(card=>{
 
-item.style.opacity="0";
-item.style.transform="translateY(80px)";
-item.style.transition="all 1s ease";
+card.style.opacity="0";
+card.style.transform="translateY(70px)";
+card.style.transition="all 1s ease";
 
-observer.observe(item);
+observer.observe(card);
 
 });
 
@@ -33,12 +31,11 @@ const nav=document.querySelector("nav");
 
 if(window.scrollY>50){
 
-nav.style.background="rgba(0,0,0,.4)";
+nav.style.background="rgba(0,0,0,.5)";
 
 }else{
 
 nav.style.background="rgba(255,255,255,.03)";
-
 }
 
 });
