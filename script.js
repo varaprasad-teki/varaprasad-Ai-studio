@@ -1,41 +1,37 @@
-const cards=document.querySelectorAll(".card,.glass");
+const cards = document.querySelectorAll('.card, .glass');
 
-const observer=new IntersectionObserver((entries)=>{
+const revealCards = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealCards.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.15,
+    rootMargin: '0px 0px -30px 0px'
+  }
+);
 
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-entry.target.style.transform="translateY(0)";
-
-}
-
+cards.forEach((card) => {
+  card.classList.add('reveal');
+  revealCards.observe(card);
 });
 
-});
+const nav = document.querySelector('nav');
 
-cards.forEach(card=>{
+window.addEventListener('scroll', () => {
+  if (!nav) return;
 
-card.style.opacity="0";
-card.style.transform="translateY(70px)";
-card.style.transition="all 1s ease";
-
-observer.observe(card);
-
-});
-
-window.addEventListener("scroll",()=>{
-
-const nav=document.querySelector("nav");
-
-if(window.scrollY>50){
-
-nav.style.background="rgba(0,0,0,.5)";
-
-}else{
-
-nav.style.background="rgba(255,255,255,.03)";
-}
-
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(0, 0, 0, 0.55)';
+    nav.style.backdropFilter = 'blur(8px)';
+    nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+  } else {
+    nav.style.background = 'rgba(255, 255, 255, 0.03)';
+    nav.style.backdropFilter = 'blur(0px)';
+    nav.style.boxShadow = 'none';
+  }
 });
